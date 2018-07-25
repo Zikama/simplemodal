@@ -97,30 +97,7 @@ p#details,p#caption{
 
 
 /**/
-@media screen and (max-width:350px){	
-	.img-togo{
-	filter: drop-shadow(0px 5px 10px #888);
-	max-width: 55%;max-height: 359px;
-	min-width: 250px;min-height:159px ;
-	width: auto;height: auto;
-    text-align: center;
-    position: absolute;top: auto;bottom: auto;left: auto;right: 0px;margin-right: 0px;margin-right: auto;
-	z-index:985;
-}
-header.header{  
-   background: rgba(255,255,255,.95);color: #000;height: 60px;font-family: arial;font-size:18pt;font-weight:900;
-   text-shadow: 0 3px 5px rgba(0, 0, 0, 0.26);position: absolute;
-}
-header>img{
-    max-width: 50%;max-height: 200px;height: 100px;width: 40%;
-}header>h3{position: relative;top: -29px;margin-right: 95px;
-}
-header>h4,header>.input{
-      position: relative;top: -29px;margin-right: 5px;display: none;
-}div>h4,div>.input{
-	display: inline-block;
-}
-}
+
 @media screen and (max-width:780px){	
 	.img-togo{
 	filter: drop-shadow(0px 5px 10px #888);
