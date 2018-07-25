@@ -1,0 +1,13 @@
+{
+  "name": "Nemiemade",
+  "scope": "./",
+  "icons": [{
+    "src": "img/3.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }],
+  "display": "standalone",
+  "start_url": "./",
+  "background_color": "#f3f3f3",
+  "theme_color": "#ffffff"
+}

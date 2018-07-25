@@ -39,7 +39,8 @@ header.header{
 	border-radius: 3px;padding: 3px;z-index:999;
 }header>img{
     max-width: 30%;max-height: 100px;height: 80px;width: 5%;
-}header>h3{position: relative;top: -29px;margin-right: 95px;
+}header>h3,.menubar{position: relative;top: -29px;margin-right: 95px;
+}.menubar{position: absolute;top: 25px;margin-right: -5px;right: 5px;
 }header>h4{
 	margin-right: 395px
 }
@@ -49,7 +50,17 @@ header>h4,header>.input{
 header>img,header>h3,header>h4,header>.input{
 	display: inline-block;
 }
-
+ button.menubar{
+	 min-height:30px;
+	 min-width:40px;
+	 background:url("../img/menu.png") no-repeat 100% ;	 
+	 border:hidden;
+	 margin-right:5px;
+	 transition:all .2s ease-in-out;
+ }
+button.menubar:focus {
+     outline-style:ridge;outline-width:2px;outline-color:#00c7ff;margin-right:4px;	 
+	 transition:all .2s ease-in-out;}
 .input{
       margin: 9px;
       padding: 6px 12px;
@@ -108,7 +119,19 @@ p#details,p#caption{
 header.header{  
    background: rgba(255,255,255,.95);color: #000;height: 60px;font-family: arial;font-size:18pt;font-weight:900;
    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.26);position: fixed;
-}header>img{
+}.menubar{
+	 min-height:40px;
+	 min-width:50px;
+	 margin-top:10px;
+	 margin-right:5px; 
+	 float:right;
+	 background:url("../img/menu.png") no-repeat 100% ;		
+	 border:5px solid transparent;	 
+	 outline-color:#0680ff;
+	 opacity:1;
+	 /*display:inline-block;*/
+	 transition:all .2s ease-in-out;
+    }header>img{
     max-width: 13%;max-height: 70px;height: 70px;width: 13%;
 }header>h3{position: relative;top: -29px;margin-right: 95px;
 }header>h4,header>.input{

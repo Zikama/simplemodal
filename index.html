@@ -2,15 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Popup-img</title>
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
-	<link rel="icon" type="text/css" href="./img/logo.png">
+	<link rel="icon" type="text/css" href="./img/logo.png"> 
+	<link href="manifest.json" rel="manifest">
 </head>
 <body>
 	<header class="header">
 		<img src="./img/3.png"><h3>Art Verbe</h3>
 	<h4>Clck the image to see effects</h4>
 	<input type="text" class="input" data-to="grow" placeholder="Click me">
+<button class="menubar"></button>
 	</header>
 <div class="main">
   <h4>Clck the image to see effects</h4></br>
@@ -51,5 +54,15 @@
  </div>
 <script type="text/javascript" src="./js/alljquery-3.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>
+<script> 
+/** Registering Sw
+     if("serviceWorker" in navigator){
+	    navigator.serviceWorker.register("./sw.js").then((rg)=>{
+		 console.log("Sw Registered registered successfuly");
+	    }).catch(err=>{
+	    	 console.log("Sw Registration Failed",err); 
+	   });
+           } */
+</script>
 </body>
 </html>
