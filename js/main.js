@@ -43,8 +43,9 @@ $(document).on("focus",'[data-to="grow"]',function(){
   $(window).width() >= 100 && $(this).animate(
     {
       minWidth:'500',
-    });$(this).addClass("border");$(this).Attribute("placeholde","thanks for clicking!");}),
+    });$(this).addClass("border");$(this).attr("placeholder", "Thanks for clicking!");});
       $(document).on("blur",'[data-to="grow"]',function(){
+        $(this).attr("placeholder", "Click me again!");
         if($(window).width()>=100)$(this).removeClass("border");$(this).animate({minWidth:'300'})
 });
 
@@ -56,7 +57,6 @@ next.addEventListener(click,function(){
         $.ajax({
           type: "GET",
                     url: "../pages/index.html",
-          data:  new FormData(this),
           beforeSend: ()=>{$("#body-overlay").show();},
           contentType: false,
           processData:false,
@@ -78,7 +78,6 @@ prev.addEventListener(click,function(){
         $.ajax({
           type: "GET",
                     url: " ",
-          data:  new FormData(this),
           beforeSend: ()=>{$("#body-overlay").show();},
           contentType: false,
           processData:false,
