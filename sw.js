@@ -3,13 +3,15 @@
 //   Athor: Nehemie Zikama
 //   Uganda for Life
  */
-let cachesNM="nemie_m-v1",
+let cachesNM="nemie_m-v3",
     contentsURL=[
 	              "./",
 	              "./manifest.json",
 	              "./index.html",
 				  "./css/main.css",
 				  "./js/main.js", 		   		  
+				  "./js/idb.js", 		   		  
+				  "./js/IndexController.js", 		   		  
 				  "./js/alljquery-3.js", 		   		  
 				  "./pages/index.html", 		   		  
 				  "./img/1.png",		  
@@ -50,21 +52,27 @@ self.addEventListener('activate',event=>{
 	);
 	console.log("servise Worker Activated");
 });
-self.addEventListener("fetch",event =>{
-	/*const requests= new URL(event.request.url);	
-	if(requests == location.origin){
-		if(requests.pathname =="./"){
-			event.respondWith(caches.match("./index.html"))
-		}
-	}*/
-	 event.respondWith(
-    caches
-      .match(event.request)
-      .then(response => response || fetch(event.request)),
-  );
+
+self.addEventListener('fetch', (event) =>{
+    const requestURL = new URL(event.request.url);
+
+    if(requestURL.origin === location.origin){
+        if(requestURL.pathname === '/'){
+            event.respondWith(caches.match('/'));
+            return;
+        }
+    }
+
+
+    event.respondWith(
+        caches.match(event.request).then((response) => {
+            return response || fetch(event.request);
+        })
+    );
 });
-/*self.addEventListener('message', function (event) {
-  if (event.data.action === 'skipWaiting') {
-    self.skipWaiting();
-  }
-});*/
+
+self.addEventListener('message', (event) => {
+    if (event.data.action === 'skipWaiting') {
+        self.skipWaiting();
+    }
+});

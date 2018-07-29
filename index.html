@@ -16,7 +16,7 @@
 <button class="menubar"></button>
 	</header>
 <div class="main">
-  <h4>Clck the image to see effects</h4></br>
+  <h4 id='userDisplayer'>Clck the image to see effects</h4></br>
 	<input type="text" class="input" data-to="grow" placeholder="Click me">
 <!--___________________________ LOADER _____________________________-->
 <div id="body-overlay">
@@ -26,6 +26,16 @@
 		<span class="img">
 		<img src="./img/4.jpg" class="img img-hover" data-toggle="img"  alt="Page fixed menu bar at the top page of snother photo">
 		<img src="./img/4.jpg" class="img img-hover" data-toggle="img"   alt="Page fixed menu bar at the top page">
+
+	<span class="container" >
+	<div class="flex one" data-toggle="img">Let's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts hereLet's say you got this texts here</div>
+	<div class="flex two" data-toggle="img"></div>
+	<div class="flex three" data-toggle="img"></div>
+	<div class="flex four" data-toggle="img"></div>
+	<div class="flex five" data-toggle="img"></div>
+	<!-- <div class="flex six" data-toggle="img"></div> -->
+</span> 
+
 	</span>
 </div>	
 <!--___________________________ DEPENDENT LAYER _____________________________-->
@@ -45,6 +55,12 @@
    </div>
 </div>
 <button class="Prev btn">Prev</button><button class="Next btn">Next</button>
+
+
+   <div id="update-message">
+
+   </div>
+
 <!--____________________ FOOTER _______________________________-->
  <footer id="m_footer" class="main_footer">
  	<div>
@@ -52,9 +68,80 @@
            </div>
     </footer>
  </div>
+ <script src="./js/idb.js"></script>
 <script type="text/javascript" src="./js/alljquery-3.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>
+<script type="text/javascript" src="./js/IndexController.js"></script>
 <script> 
+
+//registering the service worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').then((reg) => {
+
+        if(reg.waiting) {
+            updateReady(reg.waiting);
+            return;
+        }
+
+        if(reg.installing) {
+            console.log('Service worker installing')
+            reg.installing.addEventListener('statechange', () => {
+                if(this.state == 'installed'){
+                    updateReady(this);
+                    return;
+                }
+            });
+        }
+
+        reg.addEventListener('updatefound', () => {
+            reg.installing.addEventListener('statechange', ()=>{
+                if(this.state == 'installed'){
+                    updateReady(this);
+                    return;
+                }
+            });
+        })
+
+
+    }).catch(error =>  {
+        // registration failed
+        console.error(`Registration failed with  ${error}`);
+    });
+
+    // Ensure refresh is only called once.
+    // This works around a bug in "force update on reload".
+    let refreshing;
+    navigator.serviceWorker.addEventListener(`controllerchange`, () => {
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+    });
+}
+
+ //New message when serviceWorker was updated
+ updateReady =(worker)=>{
+   
+    Controller.showUpdateUI(`New version available`);
+
+    const updateMessage = q('#update-message');
+
+    updateMessage.addEventListener('click', (e) => {
+        if(e.target && e.target.id== 'btn-refresh'){
+
+            worker.postMessage({action: 'skipWaiting'});
+
+
+        }else if(e.target && e.target.id== 'btn-cancel'){
+            setTimeout(() => {
+                q('#update-message div').remove();
+            }, 1000);
+        }
+
+    })
+}
+
+
+
 /** Registering Sw
      if("serviceWorker" in navigator){
 	    navigator.serviceWorker.register("./sw.js").then((rg)=>{
@@ -63,6 +150,7 @@
 	    	 console.log("Sw Registration Failed",err); 
 	   });
            } */
+
 </script>
 </body>
 </html>

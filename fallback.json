@@ -1,0 +1,12 @@
+{
+	"articles":
+	[
+		{
+	"title": "Dog Fails to fetch articals, Finds a ball",
+	"url": "",
+	"urlToImage": "img/fallback-dog.jpg",
+	"description": "Try reload the page when you're online"
+       }
+   ]
+}
+
