@@ -14,27 +14,42 @@
        next         =    n$('.Next'),
        prev         =    n$('.Prev'),
        add          =    n$('.add'),
+       container    =    n$('.container'),
        clas         =    n$('.clas');
    
   $(document).ready(function(){
-    //_____________________ add class img-togo to our custom atrribute ___ and open a layer for it ________
+///////////////_____ add class img-togo to our custom atrribute ___ and open a layer for it ________
 $(document).on("click",'[data-toggle="img"]',function(){
        $(this).addClass("img-togo");
-       $(this).css({fontSize:'28pt'});
         img_modal.style.display = "block";
+        body.style.overflow="hidden";
         closer.style.display = "block";
   });
-    //_____________________ close layer and add class img-nomo to our custom atrribute ___ to return in normal mode ________
+//////////////  For Boxes ///////////////////////////
+$(document).on("click",'[data-toggle="box"]',function(){
+       $(this).addClass("box_togo");
+       $(this).removeClass("flex");
+        img_modal.style.display = "block";
+        closer.style.display = "block";
+        body.style.overflow="hidden";
+  });
+//////___ close layer and add class img-nomo to our custom atrribute ___ to return in normal mode ________
 closer.addEventListener('click', ()=>{
  $(".close").trigger("click");
 });
+////////////////////// Close for all modals /////////////////////
 close.addEventListener('click', ()=>{
    let togo = $('[data-toggle="img"]');
        togo.removeClass("img-togo");   
        togo.addClass("img-nomo");   
-       togo.css({fontSize:'8pt'});
-     img_modal.style.display = "none";
-      closer.style.display = "none";
+       /////////////////for box///////////////
+   let  togoBox = $('[data-toggle="box"]');
+        togoBox.removeClass("box_togo");
+       togoBox.addClass("flex");
+        ///////////////Close Layers//////////////////////////// 
+        img_modal.style.display = "none";
+        closer.style.display = "none";
+        body.style.overflowY="auto";
 });
 
 $(document).on("focus",'[data-to="grow"]',function(){
@@ -54,7 +69,7 @@ $(document).on("focus",'[data-to="grow"]',function(){
 next.addEventListener(click,function(){
         $.ajax({
           type: "GET",
-                    url: "./pages/index.html",
+          url: "./pages/index.html",
           beforeSend: ()=>{$("#body-overlay").show();},
           contentType: false,
           processData:false,
