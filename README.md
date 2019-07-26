@@ -4,5 +4,5 @@
       i hope you like mine too
        <img src="https://zikama.github.io/simplemodal/img/demo.png" max-width="80%" max-height="878px">
     
-     ![ simple image modal ](https://github.com/zikama/simplemodal/blob/master/img/demo.PNG "simplemodal")
+     ![alt text](https://github.com/zikama/simplemodal/blob/master/img/demo.PNG "simplemodal")
 # simple Image Modal
