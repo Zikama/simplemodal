@@ -1,144 +1,134 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Popup-img</title>
-	<link rel="stylesheet" type="text/css" href="./css/main.css">
-	<link rel="icon" type="text/css" href="./img/logo.png"> 
-	<link href="manifest.json" rel="manifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup-img</title>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="icon" type="text/css" href="./img/logo.png">
+    <link href="manifest.json" rel="manifest">
 </head>
+
 <body>
-	<header class="header">
-		<img src="./img/3.png"><h3>Art Verbe</h3>
-	<h4>Clck the image to see effects</h4>
-	<input type="text" class="input" data-to="grow" placeholder="Click me">
-<button class="menubar"></button>
-	</header>
-<div class="main">
-  <h4 id='userDisplayer'>Clck the image to see effects</h4></br>
-	<input type="text" class="input" data-to="grow" placeholder="Click me">
-<!--___________________________ LOADER _____________________________-->
-<div id="body-overlay">
-<img id="bo" class="" src="./img/loading.gif">
-</div>
-	<div class="clas">
-		<span class="img">
+    <header class="header">
+        <img src="./img/3.png">
+        <h3>Art Verbe</h3>
+        <h4>Clck the image to see effects</h4>
+        <input type="text" class="input" data-to="grow" placeholder="Click me">
+        <button class="menubar"></button>
+    </header>
+    <div class="main">
+        <h4 id='userDisplayer'>Clck the image to see effects</h4>
+        </br>
+        <input type="text" class="input" data-to="grow" placeholder="Click me">
+        <!--___________________________ LOADER _____________________________-->
+        <div id="body-overlay">
+            <img id="bo" class="" src="./img/loading.gif">
+        </div>
+        <div class="clas">
+            <span class="img">
 		<img src="./img/4.jpg" class="img img-hover" data-toggle="img"  alt="Page fixed menu bar at the top page of snother photo">
 		<img src="./img/4.jpg" class="img img-hover" data-toggle="img"   alt="Page fixed menu bar at the top page">
 	</span>
-</div>	
-<!--==___ ADDED BOXES IN THE container ______==-->
-	<span class="container" >
+        </div>
+        <!--==___ ADDED BOXES IN THE container ______==-->
+        <span class="container">
 	<div class="flex  one" data-toggle="box">Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here Let's say you got this texts here </div>
 	<div class="flex  two" data-toggle="box"></div>
 	<div class="flex  three" data-toggle="box"></div>
 	<div class="flex  four" data-toggle="box"></div>
 	<div class="flex  five" data-toggle="box"></div>
 	<!-- <div class="flex six" data-toggle="img"></div> -->
-</span> 
-<!--___________________________ DEPENDENT LAYER _____________________________-->
-<span class="layer"></span>
-<!--___________________________ MODAL _____________________________-->
-	  <div id="image_modal" class="main"> 
-<!--___________________________ IMG CONTAINER _____________________________-->     
-     <div id='media-player'> 
-      <img id="img01" class="modal-content">
-        
-           <div class="main_left__menu">
-        <p id="details"><p id="caption"></p><button class="close btn">Close</button></p>
-           </div>
-<!-- __________   THIS IS NOT AVAILABLE (ADITION PICRUERS IN MODAL MODE) ____________ -->   
-    <!--        <div class="add">  		
-        </div> _____________--> 
-   </div>
-</div>
-<button class="Prev btn">Prev</button><button class="Next btn">Next</button>
+</span>
+        <button class="Prev btn">Prev</button><button class="Next btn">Next</button>
 
 
-   <div id="update-message">
+        <div id="update-message">
 
-   </div>
+        </div>
 
-<!--____________________ FOOTER _______________________________-->
- <footer id="m_footer" class="main_footer">
- 	<div>
-        <p id="details"><p id="caption">Made and Designed by</p> <a class="link" href="https://github.com/zikama">Nemie</a>      <button class="fullscreen btn">Fullscreen</button></p>
-           </div>
-    </footer>
- </div>
- <script src="./js/idb.js"></script>
-<script type="text/javascript" src="./js/alljquery-3.js"></script>
-<script type="text/javascript" src="./js/main.js"></script>
-<script type="text/javascript" src="./js/IndexController.js"></script>
-<script> 
+        <!--____________________ FOOTER _______________________________-->
+        <footer id="m_footer" class="main_footer">
+            <div>
+                <p id="details">
+                    <p id="caption">Made and Designed by</p> <a class="link" href="https://github.com/zikama">Nemie</a> <button class="fullscreen btn">Fullscreen</button></p>
+            </div>
+        </footer>
+    </div>
+    <script src="./js/idb.js"></script>
+    <!-- <script type="text/javascript" src="./js/alljquery-3.js"></script> -->
+    <script type="text/javascript" src="./js/gallery/index.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/IndexController.js"></script>
+    <script>
+        //registering the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then((reg) => {
 
-//registering the service worker
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').then((reg) => {
-
-        if(reg.waiting) {
-            updateReady(reg.waiting);
-            return;
-        }
-
-        if(reg.installing) {
-            console.log('Service worker installing')
-            reg.installing.addEventListener('statechange', () => {
-                if(this.state == 'installed'){
-                    updateReady(this);
+                if (reg.waiting) {
+                    updateReady(reg.waiting);
                     return;
                 }
+
+                if (reg.installing) {
+                    console.log('Service worker installing')
+                    reg.installing.addEventListener('statechange', () => {
+                        if (this.state == 'installed') {
+                            updateReady(this);
+                            return;
+                        }
+                    });
+                }
+
+                reg.addEventListener('updatefound', () => {
+                    reg.installing.addEventListener('statechange', () => {
+                        if (this.state == 'installed') {
+                            updateReady(this);
+                            return;
+                        }
+                    });
+                })
+
+
+            }).catch(error => {
+                // registration failed
+                console.error(`Registration failed with  ${error}`);
+            });
+
+            // Ensure refresh is only called once.
+            // This works around a bug in "force update on reload".
+            let refreshing;
+            navigator.serviceWorker.addEventListener(`controllerchange`, () => {
+                if (refreshing) return;
+                window.location.reload();
+                refreshing = true;
             });
         }
 
-        reg.addEventListener('updatefound', () => {
-            reg.installing.addEventListener('statechange', ()=>{
-                if(this.state == 'installed'){
-                    updateReady(this);
-                    return;
+        //New message when serviceWorker was updated
+        updateReady = (worker) => {
+
+            Controller.showUpdateUI(`New version available`);
+
+            const updateMessage = q('#update-message');
+
+            updateMessage.addEventListener('click', (e) => {
+                if (e.target && e.target.id == 'btn-refresh') {
+
+                    worker.postMessage({
+                        action: 'skipWaiting'
+                    });
+
+
+                } else if (e.target && e.target.id == 'btn-cancel') {
+                    setTimeout(() => {
+                        q('#update-message div').remove();
+                    }, 1000);
                 }
-            });
-        })
 
-
-    }).catch(error =>  {
-        // registration failed
-        console.error(`Registration failed with  ${error}`);
-    });
-
-    // Ensure refresh is only called once.
-    // This works around a bug in "force update on reload".
-    let refreshing;
-    navigator.serviceWorker.addEventListener(`controllerchange`, () => {
-        if (refreshing) return;
-        window.location.reload();
-        refreshing = true;
-    });
-}
-
- //New message when serviceWorker was updated
- updateReady =(worker)=>{
-   
-    Controller.showUpdateUI(`New version available`);
-
-    const updateMessage = q('#update-message');
-
-    updateMessage.addEventListener('click', (e) => {
-        if(e.target && e.target.id== 'btn-refresh'){
-
-            worker.postMessage({action: 'skipWaiting'});
-
-
-        }else if(e.target && e.target.id== 'btn-cancel'){
-            setTimeout(() => {
-                q('#update-message div').remove();
-            }, 1000);
+            })
         }
-
-    })
-}
-
-</script>
+    </script>
 </body>
+
 </html>

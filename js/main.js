@@ -1,120 +1,75 @@
-/*
-    * Andela,Google,Udacity ,
-    * Made with love
-    * Author:Nehemie Zikama
-*/ 
-      let  img_modal  =   n$("#image_modal"),
-       img          =          n$(".img"),
-       body         =    n$("body"),
-       main         =    n$(".main"),
-       title        =    n$("head>title"),
-       click        =    "click",
-       close        =    n$('.close'),
-       closer       =    n$('.layer'),
-       next         =    n$('.Next'),
-       prev         =    n$('.Prev'),
-       add          =    n$('.add'),
-       container    =    n$('.container'),
-       clas         =    n$('.clas');
-   
-  $(document).ready(function(){
-///////////////_____ add class img-togo to our custom atrribute ___ and open a layer for it ________
-$(document).on("click",'[data-toggle="img"]',function(){
-       $(this).addClass("img-togo");
-        img_modal.style.display = "block";
-        body.style.overflow="hidden";
-        closer.style.display = "block";
-  });
-//////////////  For Boxes ///////////////////////////
-$(document).on("click",'[data-toggle="box"]',function(){
-       $(this).addClass("box_togo");
-       $(this).removeClass("flex");
-        img_modal.style.display = "block";
-        closer.style.display = "block";
-        body.style.overflow="hidden";
-  });
-//////___ close layer and add class img-nomo to our custom atrribute ___ to return in normal mode ________
-closer.addEventListener('click', ()=>{
- $(".close").trigger("click");
-});
-////////////////////// Close for all modals /////////////////////
-close.addEventListener('click', ()=>{
-   let togo = $('[data-toggle="img"]');
-       togo.removeClass("img-togo");   
-       togo.addClass("img-nomo");   
-       /////////////////for box///////////////
-   let  togoBox = $('[data-toggle="box"]');
-        togoBox.removeClass("box_togo");
-       togoBox.addClass("flex");
-        ///////////////Close Layers//////////////////////////// 
-        img_modal.style.display = "none";
-        closer.style.display = "none";
-        body.style.overflowY="auto";
-});
+let img = n$(".img"),
+    // body = n$("body"),
+    main = n$(".main"),
+    title = n$("head>title"),
+    // click = "click",
+    next = n$('.Next'),
+    prev = n$('.Prev'),
+    add = n$('.add'),
+    container = n$('.container'),
+    clas = n$('.clas');
 
-$(document).on("focus",'[data-to="grow"]',function(){
-  $(window).width() >= 100 && $(this).animate(
-    {
-      minWidth:'500',
-    });$(this).addClass("border");$(this).attr("placeholder", "Thanks for clicking!");});
-      $(document).on("blur",'[data-to="grow"]',function(){
-        $(this).attr("placeholder", "Click me again!");
-        if($(window).width()>=100)$(this).removeClass("border");$(this).animate({minWidth:'300'})
-});
-
-}); function n$(event) {
-          return document.querySelector(event);
+let data_to_grow = n$('[data-to="grow"]');
+data_to_grow.addEventListener("focus", function() {
+    if (window.innerWidth >= 100) {
+        data_to_grow.style.minWidth = '50%';
+        data_to_grow.classList.add("border");
+        data_to_grow.setAttribute("placeholder", "Thanks for clicking!");
     }
+});
+
+data_to_grow.addEventListener("blur", function() {
+    data_to_grow.setAttribute("placeholder", "Click me again!");
+    if (window.innerWidth >= 100) {
+        data_to_grow.classList.remove("border");
+        data_to_grow.style.minWidth = '30%';
+    }
+});
+
 //next
-next.addEventListener(click,function(){
-        $.ajax({
-          type: "GET",
-          url: "./pages/index.html",
-          beforeSend: ()=>{$("#body-overlay").show();},
-          contentType: false,
-          processData:false,
-          success: (data)=>
-          {
+next.addEventListener(click, function() {
+    n$.ajax({
+        type: "GET",
+        url: "./pages/index.html",
+        beforeSend: () => { n$("#body-overlay").show(); },
+        contentType: false,
+        processData: false,
+        success: (data) => {
             img.innerHTML = data;
-           // not availabe ---> add.innerHTML = data;
-            title.innerHTML ="HHH | kampala";
-          setInterval(()=> {$("#body-overlay").hide(); },200);
-          },
-          error: (err)=> 
-          {
-          console.log(`Failed to load `,err);
-          }           
-         });    
-   });
+            // not availabe ---> add.innerHTML = data;
+            title.innerHTML = "HHH | kampala";
+            setInterval(() => { n$("#body-overlay").hide(); }, 200);
+        },
+        error: (err) => {
+            console.log(`Failed to load `, err);
+        }
+    });
+});
 //prev
-prev.addEventListener(click,function(){
-        $.ajax({
-          type: "GET",
-                    url: " ",
-          beforeSend: ()=>{$("#body-overlay").show();},
-          contentType: false,
-          processData:false,
-          success: (data)=>
-          {
-             location.reload();
-          setInterval(()=> {$("#body-overlay").hide(); },200);
-          },
-          error: (err)=> 
-          {
-          console.log(`Failed to load `,err);
-          }           
-         });    
-   }); 
+prev.addEventListener(click, function() {
+    n$.ajax({
+        type: "GET",
+        url: " ",
+        beforeSend: () => { n$("#body-overlay").show(); },
+        contentType: false,
+        processData: false,
+        success: (data) => {
+            location.reload();
+            setInterval(() => { n$("#body-overlay").hide(); }, 200);
+        },
+        error: (err) => {
+            console.log(`Failed to load `, err);
+        }
+    });
+});
 
-    //fullscreen button clicked
-  $('.fullscreen').on('click', function() {
-    if($.isFunction(img.webkitEnterFullscreen)) {
-      img.webkitEnterFullscreen();
-    } 
-    else if ($.isFunction(img.mozRequestFullScreen)) {
-      img.mozRequestFullScreen();
+//fullscreen button clicked
+n$('.fullscreen').addEventListener('click', function() {
+    if (typeof img.webkitEnterFullscreen == "function") {
+        img.webkitEnterFullscreen();
+    } else if (typeof img.mozRequestFullScreen == "function") {
+        img.mozRequestFullScreen();
+    } else {
+        alert('Your browsers doesn\'t support fullscreen');
     }
-    else {
-      alert('Your browsers doesn\'t support fullscreen');
-    }
-  });//1e3
+}); //1e3
